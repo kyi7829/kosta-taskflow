@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>지렁이 게임</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 min-h-screen flex flex-col items-center justify-center">
+
+  <div class="flex flex-col items-center gap-4">
+    <div class="flex items-center justify-between w-full px-2">
+      <div class="flex gap-3">
+        <a href="/" class="text-gray-400 hover:text-white text-sm transition">← 업무 관리</a>
+        <a href="/aim.html" class="text-gray-400 hover:text-white text-sm transition">🎯 에임</a>
+      </div>
+      <h1 class="text-2xl font-bold text-white">지렁이 게임</h1>
+      <div class="w-20"></div>
+    </div>
+
+    <!-- 점수 -->
+    <div class="flex gap-8 text-white">
+      <div class="text-center">
+        <div class="text-xs text-gray-400">점수</div>
+        <div id="score" class="text-2xl font-bold text-green-400">0</div>
+      </div>
+      <div class="text-center">
+        <div class="text-xs text-gray-400">최고점수</div>
+        <div id="highScore" class="text-2xl font-bold text-yellow-400">0</div>
+      </div>
+    </div>
+
+    <!-- 게임 캔버스 -->
+    <div class="relative">
+      <canvas
+        id="gameCanvas"
+        width="400"
+        height="400"
+        class="border-2 border-gray-600 rounded"
+      ></canvas>
+
+      <!-- 오버레이 (시작/게임오버) -->
+      <div id="overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-900 bg-opacity-80 rounded">
+        <p id="overlayTitle" class="text-white text-3xl font-bold mb-2">지렁이 게임</p>
+        <p id="overlayMsg" class="text-gray-300 text-sm mb-6">방향키로 지렁이를 조종하세요</p>
+        <button
+          id="startBtn"
+          onclick="startGame()"
+          class="px-8 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded-lg text-lg transition"
+        >시작</button>
+      </div>
+    </div>
+
+    <p class="text-gray-500 text-xs">방향키(↑↓←→) 또는 WASD로 조종</p>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

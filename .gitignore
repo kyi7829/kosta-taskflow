@@ -1,6 +1,9 @@
 # Claude Code 내부 설정
 .claude/
 
+# Playwright
+.playwright-mcp/
+
 # Python
 __pycache__/
 *.py[cod]

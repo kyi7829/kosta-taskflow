@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>업무 관리</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-8">
+  <div class="max-w-2xl mx-auto">
+    <div class="flex items-center justify-between mb-8">
+      <h1 class="text-3xl font-bold text-gray-800">업무 관리</h1>
+      <div class="flex gap-2">
+        <a href="/game.html" class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition text-sm">🐍 지렁이</a>
+        <a href="/aim.html"  class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition text-sm">🎯 에임</a>
+      </div>
+    </div>
+
+    <!-- 업무 추가 -->
+    <div class="flex gap-2 mb-8">
+      <input
+        id="taskInput"
+        type="text"
+        placeholder="새 업무를 입력하세요"
+        class="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+      <button
+        onclick="addTask()"
+        class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+      >
+        추가
+      </button>
+    </div>
+
+    <!-- 업무 목록 -->
+    <div id="taskList" class="flex flex-col gap-3"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

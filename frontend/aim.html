@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>에임 트레이너</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #gameArea { cursor: crosshair; }
+    .target {
+      position: absolute;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-950 min-h-screen flex flex-col items-center justify-center select-none">
+
+  <div class="w-full max-w-4xl px-4 flex flex-col gap-3">
+
+    <!-- 헤더 -->
+    <div class="flex items-center justify-between">
+      <a href="/" class="text-gray-500 hover:text-white text-sm transition">← 업무 관리로</a>
+      <h1 class="text-xl font-bold text-white">🎯 에임 트레이너</h1>
+      <a href="/game.html" class="text-gray-500 hover:text-white text-sm transition">🐍 지렁이</a>
+    </div>
+
+    <!-- 스탯 바 -->
+    <div class="flex gap-3">
+      <div class="flex-1 bg-gray-800 border border-gray-700 rounded px-4 py-2">
+        <div class="text-gray-400 text-xs uppercase tracking-widest">시간</div>
+        <div id="statTime" class="text-white text-2xl font-bold">0 s</div>
+      </div>
+      <div class="flex-1 bg-gray-800 border border-green-700 rounded px-4 py-2">
+        <div class="text-green-400 text-xs uppercase tracking-widest">점수 / 초</div>
+        <div id="statScore" class="text-green-400 text-2xl font-bold">0.00 /s</div>
+      </div>
+      <div class="flex-1 bg-gray-800 border border-blue-700 rounded px-4 py-2">
+        <div class="text-blue-400 text-xs uppercase tracking-widest">정확도</div>
+        <div id="statAccuracy" class="text-blue-400 text-2xl font-bold">— %</div>
+      </div>
+      <div class="flex-1 bg-gray-800 border border-gray-700 rounded px-4 py-2">
+        <div class="text-gray-400 text-xs uppercase tracking-widest">적중 / 미스</div>
+        <div id="statHits" class="text-white text-2xl font-bold">0 / 0</div>
+      </div>
+      <!-- 시작/정지 버튼 -->
+      <button id="ctrlBtn" onclick="toggleGame()"
+        class="px-6 py-2 bg-green-600 hover:bg-green-500 text-white font-bold rounded transition text-sm">
+        시작
+      </button>
+    </div>
+
+    <!-- 게임 영역 -->
+    <div id="gameArea"
+      class="relative w-full rounded-lg overflow-hidden"
+      style="height: 500px; background-color: #0d1117;"
+      onclick="handleClick(event)">
+
+      <!-- 격자 배경 (SVG) -->
+      <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4b5563" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
+
+      <!-- 오버레이 -->
+      <div id="overlay" class="absolute inset-0 flex flex-col items-center justify-center z-10">
+        <p class="text-white text-4xl font-bold mb-2">에임 트레이너</p>
+        <p class="text-gray-400 text-sm mb-6">랜덤으로 나타나는 타깃을 빠르게 클릭하세요</p>
+        <button onclick="toggleGame()"
+          class="px-10 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-lg text-lg transition">
+          시작하기
+        </button>
+      </div>
+
+      <!-- 결과 오버레이 -->
+      <div id="resultOverlay" class="absolute inset-0 flex flex-col items-center justify-center z-10 hidden">
+        <p class="text-white text-3xl font-bold mb-4">결과</p>
+        <div id="resultText" class="text-center mb-6 space-y-1"></div>
+        <button onclick="toggleGame()"
+          class="px-10 py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-lg text-lg transition">
+          다시 시작
+        </button>
+      </div>
+
+      <!-- 타깃 -->
+      <div id="target" class="target hidden z-20"></div>
+    </div>
+
+    <p class="text-gray-600 text-xs text-center">타깃을 클릭 → 적중 | 빈 공간 클릭 → 미스</p>
+  </div>
+
+  <script src="aim.js"></script>
+</body>
+</html>
